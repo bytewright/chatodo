@@ -1,8 +1,10 @@
-HELP.md
-target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# Log file
+/log/
+*.log
 
 ### STS ###
 .apt_generated
@@ -33,6 +35,7 @@ build/
 .vscode/
 
 target/
+dep.tree
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
