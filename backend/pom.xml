@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0-M2</version>
+		<version>3.1.4</version>
 		<relativePath/>
 	</parent>
 	<groupId>de.bytewright.chatodo</groupId>
@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>20</java.version>
+		<java.version>21</java.version>
 		<chatodo.dep.caldav4j>1.0.5</chatodo.dep.caldav4j>
 	</properties>
 
@@ -63,6 +63,19 @@
 			<artifactId>caldav4j</artifactId>
 			<version>${chatodo.dep.caldav4j}</version>
 		</dependency>
+		<dependency>
+			<!-- JCache for API for caldav4j -->
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-terracotta -->
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>3.10.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
 		<dependency>
 			<groupId>org.apache.httpcomponents.client5</groupId>
@@ -71,7 +84,18 @@
 		<dependency>
 			<groupId>org.telegram</groupId>
 			<artifactId>telegrambots</artifactId>
-			<version>6.5.0</version>
+			<version>6.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.5.5</version>
+			<classifier>models-german</classifier>
 		</dependency>
 
 

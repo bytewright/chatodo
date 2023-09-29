@@ -1,8 +1,12 @@
-package de.bytewright.chatodo.util;
+package de.bytewright.chatodo.backend;
 
-import org.springframework.beans.factory.InitializingBean;
+import de.bytewright.chatodo.util.ConnectionSettings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +15,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.Properties;
 
-public class AppSecrets implements HealthIndicator, InitializingBean {
+@Service
+public class AppSecretsService implements HealthIndicator {
+    private static final Logger log = LoggerFactory.getLogger(AppSecretsService.class);
     private static final String FILENAME = "app.secret";
     private static final String HEALTHKEY = "test.key";
     private static final String HEALTHKEYVALUE = "testkey";
@@ -20,7 +26,11 @@ public class AppSecrets implements HealthIndicator, InitializingBean {
     private static final String CALDAV_USERPW = "caldav.userpw";
     private final Properties props = new Properties();
 
-    public AppSecrets() {
+    @Autowired
+    public AppSecretsService() {
+        log.info("Loading app secrets...");
+        init();
+        log.info("Loading app secrets finished, got {} entries", props.size());
     }
 
     public void init() {
@@ -54,11 +64,9 @@ public class AppSecrets implements HealthIndicator, InitializingBean {
             return Health.down().withDetail("secretfile", "empty or not found").build();
         }
         return Health.up().build();
-
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        init();
+    public Optional<String> getString(String key) {
+        return Optional.ofNullable(props.getProperty(key));
     }
 }
