@@ -73,4 +73,7 @@ public class CalendarService implements ApplicationListener<ContextRefreshedEven
         return Health.up().build();
     }
 
+    public void createTodo() {
+
+    }
 }

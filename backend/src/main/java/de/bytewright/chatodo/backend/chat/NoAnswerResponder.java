@@ -2,9 +2,9 @@ package de.bytewright.chatodo.backend.chat;
 
 import de.bytewright.chatodo.backend.chat.nlp.MsgClassification;
 
-public class NoAnswerResponder extends MsgResponder {
+public class NoAnswerResponder implements MessageResponderGenerator {
     @Override
-    public int canAnswer(String classificationType) {
+    public int canAnswer(MsgClassification messageClassification) {
         return Integer.MIN_VALUE;
     }
 
